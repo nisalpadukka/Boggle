@@ -6,6 +6,7 @@
 
 #include "Common.h"
 #include "WordFinder.h"
+#include <memory>
 
 namespace boggle {
     namespace wordfinder {
