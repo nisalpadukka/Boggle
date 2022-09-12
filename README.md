@@ -52,13 +52,15 @@ Instead of brute-forcing all the words in the grid, we can simply run a DFS on a
 
 ## Run
 
-1. Update the command sequence in input file at
-
-```PROJECT_ROOT_DIRECTORY/inputs/inputs.txt```
-
-2. Execute the program
+1. Execute the program
 
 ```cd PROJECT_ROOT_DIRECTORY/build/boggle_ex/src && ./Boggle_ex```
+
+2. Update the words in Dictionary file at
+
+```PROJECT_ROOT_DIRECTORY/inputs/Dictionary.txt```
+
+Note: Contains of the 16 dices can be updated using the Dice.txt file at PROJECT_ROOT_DIRECTORY/inputs/Dictionary.txt.
 
 
 ## Test
