@@ -17,9 +17,15 @@ using namespace boggle::utils;
 Dictionary DictionaryParser::parse(const string& filepath){
     Dictionary dictionary;
     ifstream infile(filepath);
+
+    if (!infile.good()){
+        throw std::invalid_argument("File does not exist in " + filepath);
+    }
+
     string input;
     while (std::getline(infile, input)){
         dictionary.add(StringUtils::capitalize(StringUtils::trim(input)));
     }
+    infile.close();
     return dictionary;
 }

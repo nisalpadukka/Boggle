@@ -21,7 +21,7 @@ bool Dictionary::exists(const string& word) const{
 unsigned int Dictionary::getScore(const string& word) const{
     auto it = m_dictionary.find(word);
     if (it == m_dictionary.end()){
-        return 0;
+        throw invalid_argument("Not in dictionary " + word);
     }
     return it->second;
 }

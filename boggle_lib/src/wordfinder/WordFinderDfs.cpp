@@ -3,12 +3,12 @@
 //
 
 #include "WordFinderDfs.h"
-#include "Constants.h"
-#include "../validator/WordValidator.h"
+#include "../utils/MapperUtils.h"
 #include <set>
 
 using namespace boggle;
 using namespace boggle::wordfinder;
+using namespace boggle::utils;
 
 namespace{
     bool dfs(GameBoardSnapshot& gameBoardSnapshot, string &word, int i, int j, int n, int m, int idx);
@@ -18,10 +18,11 @@ MatchedWords WordFinderDfs::findMatchingWords(const GameBoardSnapshot& gameBoard
     MatchedWords matchedWords;
     auto wordsInDictionary = dictionary.getWords();
     for (auto word : wordsInDictionary) {
-        for(int j = 0 ; j < gameBoardSnapshot.size(); j++){
-            for(int k=0; k < gameBoardSnapshot[0].size(); k++){
+        for(auto j = 0 ; j < gameBoardSnapshot.size(); j++){
+            for(auto k = 0; k < gameBoardSnapshot[0].size(); k++){
                 GameBoardSnapshot gameBoardSnapshotTemp = gameBoardSnapshot;
-                if( dfs (gameBoardSnapshotTemp, word, j, k, gameBoardSnapshot.size(), gameBoardSnapshot[0].size(), 0)){
+                auto formattedWord = MapperUtils::shrinkQ(word);
+                if( dfs (gameBoardSnapshotTemp, formattedWord, j, k, gameBoardSnapshot.size(), gameBoardSnapshot[0].size(), 0)){
                     matchedWords.insert({word, dictionary.getScore(word)});
                 }
             }

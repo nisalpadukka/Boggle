@@ -9,6 +9,7 @@
 
 #include "DiceParser.h"
 #include "utils/StringUtils.h"
+#include "validator/MatrixValidator.h"
 
 #include <iostream>
 
@@ -17,15 +18,23 @@ using namespace boggle::utils;
 
 vector<vector<string>> DiceParser::parse(const string& filepath){
     ifstream infile(filepath);
+    if (!infile.good()){
+        throw std::invalid_argument("File does not exist in " + filepath);
+    }
     string input;
-    DiceMatrix diceMatrix;
+    DiceContainer diceContainer;
     while (std::getline(infile, input)){
         vector<string> diceRow;
         auto splitted = StringUtils::split(input);
         for (const auto& dice : splitted){
             diceRow.push_back(StringUtils::capitalize(StringUtils::trim(dice)));
         }
-        diceMatrix.push_back(diceRow);
+        diceContainer.push_back(diceRow);
     }
-    return diceMatrix;
+    if (!boggle::validator::MatrixValidator<string>::isValid(diceContainer)){
+        infile.close();
+        throw invalid_argument("Dice matrix is incomplete");
+    }
+    infile.close();
+    return diceContainer;
 }

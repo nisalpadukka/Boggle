@@ -13,7 +13,6 @@ using namespace std;
 namespace boggle{
     //Type definitions
     using DiceContainer = vector<vector<string>>;
-    using DiceMatrix = vector<vector<string>>;
     using GameBoardSnapshot = vector<vector<char>>;
     using MatchedWords = map<string, unsigned int>;
 
