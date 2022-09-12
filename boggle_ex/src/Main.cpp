@@ -11,18 +11,9 @@
 constexpr const char* DICTIONARY_FILE_PATH = "../../../inputs/dictionary.txt";
 constexpr const char* DICE_FILE_PATH = "../../../inputs/dice.txt";
 
-void printGameBoard(boggle::GameBoardSnapshot gameBoardSnapshot){
-    cout << "Game Board" << std::endl;
-    for (auto row : gameBoardSnapshot){
-        for (auto cell : row){
-            std::cout << cell << ",";
-        }
-        std::cout << endl;
-    }
-}
+void printGameBoard(const boggle::GameBoardSnapshot& gameBoardSnapshot);
 
 int main(){
-
     auto diceContainer = boggle::parser::DiceParser::parse(DICE_FILE_PATH);
     boggle::GameBoard gameBoard(diceContainer);
     auto wordFinder = boggle::wordfinder::WordFinderFactory::create(boggle::WordFinderType::DFS_LOOKUP);
@@ -38,4 +29,14 @@ int main(){
     boggle.printMatchedWords();
     std::cout << "Your score : " << boggle.computeScore() << std::endl;
     return 0;
+}
+
+void printGameBoard(const boggle::GameBoardSnapshot& gameBoardSnapshot){
+    cout << "Game Board" << std::endl;
+    for (const auto& row : gameBoardSnapshot){
+        for (auto cell : row){
+            std::cout << cell << ",";
+        }
+        std::cout << endl;
+    }
 }

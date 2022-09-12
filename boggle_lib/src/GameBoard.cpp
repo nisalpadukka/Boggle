@@ -17,7 +17,7 @@ GameBoard::GameBoard(const DiceContainer& diceContainer) : m_diceContainer(diceC
 
 }
 
-GameBoardSnapshot GameBoard::generate(){
+GameBoardSnapshot GameBoard::generate() const{
     GameBoardSnapshot gameBoardSnapshot;
     for (const auto& row : m_diceContainer){
         vector<char> diceRow;

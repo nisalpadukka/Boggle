@@ -15,8 +15,8 @@ namespace boggle {
     public:
         Boggle(const GameBoardSnapshot&  gameBoardSnapshot, const Dictionary& dictionary, unique_ptr<wordfinder::WordFinder>& wordFinder);
         void process();
-        void printMatchedWords();
-        unsigned int computeScore();
+        void printMatchedWords() const;
+        unsigned int computeScore() const;
     private:
         const GameBoardSnapshot m_gameBoardSnapshot;
         const Dictionary& m_dictionary;

@@ -28,8 +28,8 @@ unsigned int Dictionary::getScore(const string& word) const{
 
 vector<string> Dictionary::getWords() const{
     vector<string> words;
-    for (auto mapIt = m_dictionary.begin(); mapIt != m_dictionary.end(); mapIt++){
-        words.push_back(mapIt->first);
+    for (const auto &mapIt : m_dictionary){
+        words.push_back(mapIt.first);
     }
     return words;
 }

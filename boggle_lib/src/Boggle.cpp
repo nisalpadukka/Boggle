@@ -17,12 +17,12 @@ void Boggle::process(){
     m_matchWords = m_wordFinder->findMatchingWords(m_gameBoardSnapshot, m_dictionary);
 }
 
-void Boggle::printMatchedWords(){
-    for (auto word : m_matchWords){
+void Boggle::printMatchedWords() const{
+    for (const auto &word : m_matchWords){
         std::cout << word.first << std::endl;
     }
 }
 
-unsigned int Boggle::computeScore(){
+unsigned int Boggle::computeScore() const{
     return ScoreDerivator::getTotalScore(m_matchWords);
 }

@@ -16,6 +16,6 @@ namespace boggle {
         const DiceContainer& m_diceContainer;
     public:
         explicit GameBoard(const DiceContainer& diceContainer);
-        GameBoardSnapshot generate();
+        GameBoardSnapshot generate() const;
     };
 }
